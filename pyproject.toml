@@ -1,0 +1,4 @@
+[project]
+name="taskl"
+description="Simple Python library for communicating with TaskWarrior"
+version="0.1"
