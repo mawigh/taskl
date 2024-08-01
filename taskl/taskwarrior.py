@@ -72,6 +72,18 @@ class TaskWarrior:
 
         return all_tasks
 
+    def get_task(self, uuid: str) -> Task | None:
+        if self.connection:
+            cur = self.connection.cursor()
+            stmt = cur.execute('SELECT uuid, data FROM tasks WHERE uuid=?', (uuid,))
+            data = stmt.fetchone()
+            task_data = ast.literal_eval(data[1])
+            task_data['uuid'] = data[0]
+
+            return Task(task_data)
+
+        return None
+
     def get_pending_tasks(self) -> list[Task]:
         tasks = self.get_all_tasks()
         pending_tasks = [task for task in tasks if task.status == 'pending']
