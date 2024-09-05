@@ -1,12 +1,17 @@
 # taskl
-Simple python library for communicating with TaskWarrior > 3
+Simple python library for communicating with [TaskWarrior](https://taskwarrior.org/) > v3
+
+## Installation
+
+### Install via pip
+`python3 -m pip install pytaskl`
 
 ## Quick start
 
 ```python
 from taskl import TaskWarrior
 
-taskw = TaskWarrior() # defaults to $HOME/.task/
+taskw = TaskWarrior()
 pending_tasks = taskw.get_pending_tasks()
 project_tasks = taskw.get_project_tasks('shopping')
 
