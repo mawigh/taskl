@@ -81,7 +81,8 @@ class TaskWarrior:
         """
         cmd = [self.get_task_command(), 'export']
         if id:
-            cmd.insert(1, id)
+            cmd.insert(1, str(id))
+
         task_call = run(cmd, capture_output=True, text=True)
         if not task_call.returncode == 0:
             if task_call.returncode == 127:
