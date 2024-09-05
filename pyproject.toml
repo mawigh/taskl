@@ -1,4 +1,22 @@
 [project]
-name="taskl"
+name="pytaskl"
 description="Simple Python library for communicating with TaskWarrior"
 version="0.1"
+readme="README.md"
+license = {file = "LICENSE"}
+maintainers = [
+  {name = "Marcel-Brian Wilkowsky", email = "marcel.wilkowsky@outlook.de"}
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License"
+]
+
+[project.urls]
+Homepage = "https://github.com/mawigh/taskl"
+Documentation = "https://mawigh.github.io/taskl/"
+Issues = "https://github.com/mawigh/taskl/issues"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

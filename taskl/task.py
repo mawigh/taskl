@@ -16,25 +16,36 @@ class Task:
         # self.raw_task_data = raw_task_data
 
         self.description = raw_task_data.get('description')
-        annotations = raw_task_data.get('annotations', [])
+        """Task description"""
+        self.annotations = raw_task_data.get('annotations', [])
+        """A list of Task annotations (TaskNote objects)"""
         self.priority = raw_task_data.get('priority')
+        """Task priority"""
         self.urgency = raw_task_data.get('urgency')
+        """Task urgency"""
+        self.urgency = raw_task_data.get('urgency')
+        """Task urgency"""
+        self.project = raw_task_data.get('project')
+        """Task project"""
+        self.start = raw_task_data.get('start')
+        """datetime object if task is started"""
+        if self.start:
+            self.start = datetime.fromisoformat(raw_task_data.get('start'))
+        self.status = raw_task_data.get('status')
+        """current task status"""
+        self.entry = datetime.fromisoformat(raw_task_data.get('entry'))
+        """datetime of the task creation date"""
+        self.modified = datetime.fromisoformat(raw_task_data.get('modified'))
+        """datetime of the task last modification"""
+        self.due = raw_task_data.get('due')
+        """datetime of the task due date"""
+        if self.due:
+            self.due = datetime.fromisoformat(self.due)
+        self.uuid = raw_task_data.get('uuid')
         self.recur = raw_task_data.get('recur')
         self.rtype = raw_task_data.get('rtype')
         self.mask = raw_task_data.get('mask')
         self.parent = raw_task_data.get('parent')
-        self.urgency = raw_task_data.get('urgency')
-        self.project = raw_task_data.get('project')
-        self.start = raw_task_data.get('start')
-        if self.start:
-            self.start = datetime.fromisoformat(raw_task_data.get('start'))
-        self.status = raw_task_data.get('status')
-        self.entry = datetime.fromisoformat(raw_task_data.get('entry'))
-        self.modified = datetime.fromisoformat(raw_task_data.get('modified'))
-        self.due = raw_task_data.get('due')
-        if self.due:
-            self.due = datetime.fromisoformat(self.due)
-        self.uuid = raw_task_data.get('uuid')
 
         # If the current task is active, then we have an identifier
         self.id = raw_task_data.get('id', self.uuid)
@@ -46,9 +57,9 @@ class Task:
             # self.id == self.uuid
             pass
 
-        if len(annotations) >= 1:
+        if len(self.annotations) >= 1:
             # task note object for each annotation
-            self.annotations = [TaskNote(self.id, note) for note in annotations]
+            self.annotations = [TaskNote(self.id, note) for note in self.annotations]
 
     def get_priority(self) -> str:
         """Returns the task priority
