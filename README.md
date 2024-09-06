@@ -4,7 +4,8 @@ Simple python library for communicating with [TaskWarrior](https://taskwarrior.o
 ## Installation
 
 ### Install via pip
-`python3 -m pip install pytaskl`
+
+work in progress
 
 ## Quick start
 

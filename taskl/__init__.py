@@ -5,5 +5,6 @@ __version__ = '0.1'
 
 
 from .taskwarrior import TaskWarrior
-from .task.task import Task
+from .task import Task
+from .task import TaskNote
 from .utils import TasklUtils

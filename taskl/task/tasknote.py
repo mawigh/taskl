@@ -13,9 +13,12 @@ class TaskNote:
             annotation (dict): the annotation itself
         """
 
-        self.task_id = task_id
-        self.description = annotation.get('description')
-        self.entry = datetime.fromisoformat(annotation.get('entry'))
+        self.task_id: str = task_id
+        """The TaskWarrior task identifier"""
+        self.description: str = annotation.get('description')
+        """The description of the annotation"""
+        self.entry: str = datetime.fromisoformat(annotation.get('entry'))
+        """The annotation creation date"""
 
     def __repr__(self):
         return f'Taskl.Task.Note(task_id={self.task_id})'
