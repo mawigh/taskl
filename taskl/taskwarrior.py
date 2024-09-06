@@ -114,8 +114,28 @@ class TaskWarrior:
 
         return all_tasks
 
-    def create_task(self, task_data: dict) -> Task:
-        ...
+    def add_task(self, description: str, **kwargs) -> Task:
+        """Method for creating a new TaskWarrior task.
+
+        Use the TaskWarrior specific keywords like `project:` or `due:`
+
+        Example:
+        ```python3
+        from taskl import TaskWarrior
+
+        taskw = TaskWarrior()
+        new_task = taskw.add_task(description='Grocery shopping', project='Shopping', due='tomorrow')
+        ```
+
+        Args:
+            description (str): The task description
+            **kwargs (Any): TaskWarrior specific keywords like `project:`
+
+        Returns:
+            Task: The new Task instance
+        """
+        task_description = Task(description=description, **kwargs)
+        return task_description.add()
 
     def complete_task(self, id: int) -> bool | NoTaskGiven:
         """Mark a task as complete (done) using the active task id

@@ -18,8 +18,7 @@ pending_tasks = taskw.get_pending_tasks()
 project_tasks = taskw.get_project_tasks('shopping')
 
 # Add a new task
-task_description = Task(description='My new task', project='Shopping', due='tomorrow')
-new_task = task_description.add()
+new_task = taskw.add_task(description='My new task', project='Shopping', due='tomorrow')
 print(new_task)
 
 # [Taskl.Task(id=1), Taskl.Task(id=2), Taskl.Task(id=3), Taskl.Task(id=4)]

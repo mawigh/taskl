@@ -1,9 +1,7 @@
 from taskl import TaskWarrior
-from taskl import Task
 
 taskw = TaskWarrior()
 
 # adding a new task
-task_description = Task(description='My new task', project='Shopping', due='tomorrow')
-new_task = task_description.add()
+new_task = taskw.add_task(description='My new task', project='Shopping', due='tomorrow')
 print(new_task)
