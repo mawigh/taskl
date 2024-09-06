@@ -1,10 +1,10 @@
 import ast
 from os import environ, path
-from shutil import which
 from subprocess import run
 from configparser import ConfigParser
 from .exceptions import TaskCommandNotFound, ErrorRunningTaskCommand, NoTaskGiven
-from .task import Task
+from .task.task import Task
+from .utils import TasklUtils
 
 
 class TaskWarrior:
@@ -58,14 +58,6 @@ class TaskWarrior:
         """
         return self.taskrc
 
-    def get_task_command(self) -> str | None:
-        """Get the absolute path of the TaskWarrior command task
-
-        Returns:
-            str | None: Returns the absolute path of the task command
-        """
-        return which('task')
-
     def task_export(self, id: int | str = None) -> list | None:
         """Get the raw task export of all tasks or a given task if the task id is set
 
@@ -79,7 +71,7 @@ class TaskWarrior:
         Returns:
             list | None: _description_
         """
-        cmd = [self.get_task_command(), 'export']
+        cmd = [TasklUtils.get_task_command(), 'export']
         if id:
             cmd.insert(1, str(id))
 
@@ -116,9 +108,9 @@ class TaskWarrior:
 
                 task_id = task_data.get('id')
                 if not task_id == 0:
-                    self.working_set.append(Task(task_data))
+                    self.working_set.append(Task(**task_data))
 
-                all_tasks.append(Task(task_data))
+                all_tasks.append(Task(**task_data))
 
         return all_tasks
 
@@ -138,7 +130,7 @@ class TaskWarrior:
         Returns:
             bool | NoTaskGiven: Returns True if successful
         """
-        cmd = [self.get_task_command(), id, 'done']
+        cmd = [TasklUtils.get_task_command(), id, 'done']
         task_call = run(cmd, capture_output=True, text=True)
         if not task_call.returncode == 0:
             if task_call.returncode == 127:
@@ -161,7 +153,7 @@ class TaskWarrior:
         Returns:
             bool | NoTaskGiven: Returns True if successful
         """
-        cmd = [self.get_task_command(), id, 'delete']
+        cmd = [TasklUtils.get_task_command(), id, 'delete']
         task_call = run(cmd, capture_output=True, text=True)
         if not task_call.returncode == 0:
             if task_call.returncode == 127:
@@ -184,7 +176,7 @@ class TaskWarrior:
 
         data = self.task_export(id=id)
         if data:
-            return Task(data[0])
+            return Task(**data[0])
         return None
 
     def get_pending_tasks(self) -> list[Task]:

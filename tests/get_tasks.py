@@ -9,7 +9,7 @@ print(tasks)
 
 print('Pending:')
 tasks = my_tasks.get_pending_tasks()
-print(tasks)
+print(tasks[1].__dict__)
 
 print('Completed:')
 tasks = my_tasks.get_completed_tasks()
