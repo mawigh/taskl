@@ -7,6 +7,13 @@ Simple python library for communicating with [TaskWarrior](https://taskwarrior.o
 
 work in progress
 
+### Install via git
+
+```
+$ git clone https://github.com/mawigh/taskl.git
+$ python3 -m pip install ./taskl/
+```
+
 ## Quick start
 
 ```python
@@ -25,6 +32,21 @@ print(new_task)
 # [Taskl.Task(uuid=b59ba870-cd29-4707-873e-4d3ba41bfb97), Taskl.Task(uuid=0a047015-1087-4e16-8778-8267cb8f4a6f)]
 # Taskl.Task(id=30)
 ```
+
+## Current status
+
+- [x] Add a new task 
+- [x] Get pending tasks
+- [x] Get project specfic tasks
+- [ ] Complete a task
+- [ ] Set the task priority 
+- [x] Get tasks without a project
+- [x] Handling with custom exceptions
+- [ ] Get all recurring tasks
+- [ ] get custom statistics
+- [ ] Publish package on pip
+
+**Feel free to add issues**
 
 ## Documentation
 
